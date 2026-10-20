@@ -1,0 +1,205 @@
+{
+  "source": "string a = \"Hi\";\nprint(a + \"!\");",
+  "success": true,
+  "tokens": [
+    {
+      "start": 0,
+      "line": 1,
+      "column": 1,
+      "length": 6,
+      "kind": "STRING",
+      "value": "string",
+      "lexeme": "string"
+    },
+    {
+      "start": 7,
+      "line": 1,
+      "column": 8,
+      "length": 1,
+      "kind": "IDENTIFIER",
+      "value": "a",
+      "lexeme": "a"
+    },
+    {
+      "start": 9,
+      "line": 1,
+      "column": 10,
+      "length": 1,
+      "kind": "EQUAL",
+      "value": "=",
+      "lexeme": "="
+    },
+    {
+      "start": 11,
+      "line": 1,
+      "column": 12,
+      "length": 4,
+      "kind": "STRING_LITERAL",
+      "value": "Hi",
+      "lexeme": "\"Hi\""
+    },
+    {
+      "start": 15,
+      "line": 1,
+      "column": 16,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 17,
+      "line": 2,
+      "column": 1,
+      "length": 5,
+      "kind": "PRINT",
+      "value": "print",
+      "lexeme": "print"
+    },
+    {
+      "start": 22,
+      "line": 2,
+      "column": 6,
+      "length": 1,
+      "kind": "LPAREN",
+      "value": "(",
+      "lexeme": "("
+    },
+    {
+      "start": 23,
+      "line": 2,
+      "column": 7,
+      "length": 1,
+      "kind": "IDENTIFIER",
+      "value": "a",
+      "lexeme": "a"
+    },
+    {
+      "start": 25,
+      "line": 2,
+      "column": 9,
+      "length": 1,
+      "kind": "PLUS",
+      "value": "+",
+      "lexeme": "+"
+    },
+    {
+      "start": 27,
+      "line": 2,
+      "column": 11,
+      "length": 3,
+      "kind": "STRING_LITERAL",
+      "value": "!",
+      "lexeme": "\"!\""
+    },
+    {
+      "start": 30,
+      "line": 2,
+      "column": 14,
+      "length": 1,
+      "kind": "RPAREN",
+      "value": ")",
+      "lexeme": ")"
+    },
+    {
+      "start": 31,
+      "line": 2,
+      "column": 15,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 32,
+      "line": 2,
+      "column": 16,
+      "length": 0,
+      "kind": "EOF",
+      "lexeme": "",
+      "value": ""
+    }
+  ],
+  "ast": {
+    "type": "Program",
+    "line": 1,
+    "column": 1,
+    "start": 0,
+    "body": [
+      {
+        "type": "Declaration",
+        "line": 1,
+        "column": 8,
+        "start": 7,
+        "name": "a",
+        "expression": {
+          "type": "Literal",
+          "line": 1,
+          "column": 12,
+          "start": 11,
+          "value": "Hi"
+        }
+      },
+      {
+        "type": "Print",
+        "line": 2,
+        "column": 1,
+        "start": 17,
+        "expression": {
+          "type": "Concat",
+          "line": 2,
+          "column": 9,
+          "start": 25,
+          "left": {
+            "type": "Identifier",
+            "line": 2,
+            "column": 7,
+            "start": 23,
+            "name": "a"
+          },
+          "right": {
+            "type": "Literal",
+            "line": 2,
+            "column": 11,
+            "start": 27,
+            "value": "!"
+          }
+        }
+      }
+    ]
+  },
+  "symbols": [
+    {
+      "name": "a",
+      "type": "string",
+      "line": 1,
+      "initialized": true,
+      "length": 2,
+      "value": "Hi"
+    }
+  ],
+  "diagnostics": [],
+  "output": [
+    "Hi!"
+  ],
+  "phases": [
+    {
+      "id": "lexical",
+      "label": "Lexical analysis",
+      "status": "success",
+      "count": 13
+    },
+    {
+      "id": "syntax",
+      "label": "Syntax analysis",
+      "status": "success",
+      "count": 7
+    },
+    {
+      "id": "semantic",
+      "label": "Semantic analysis",
+      "status": "success",
+      "count": 1
+    }
+  ]
+}

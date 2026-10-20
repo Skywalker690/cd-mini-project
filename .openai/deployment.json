@@ -1,0 +1,9 @@
+{
+  "project_id": "appgprj_6ad723b62a6c81918edd7e02eda2b81f",
+  "deployment_id": "appgdep_6ad729fb411c819186293cf965186248",
+  "version_id": "appgprj_6ad723b62a6c81918edd7e02eda2b81f~appgver_b71423ca07fc8191b05fed7396dd20f3",
+  "url": "https://stringlab-compiler-demo-sanjo.soundlamb258.chatgpt.site",
+  "status": "succeeded",
+  "audience": "owner-private",
+  "site_source_commit": "4d4787bb3236e3c894fdb28df2ae8d8eb64fafd4"
+}

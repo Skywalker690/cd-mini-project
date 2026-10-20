@@ -1,0 +1,129 @@
+{
+  "source": "// A semicolon is deliberately missing.\nstring message = \"Hello\"\nprint(message);",
+  "success": false,
+  "tokens": [
+    {
+      "start": 40,
+      "line": 2,
+      "column": 1,
+      "length": 6,
+      "kind": "STRING",
+      "value": "string",
+      "lexeme": "string"
+    },
+    {
+      "start": 47,
+      "line": 2,
+      "column": 8,
+      "length": 7,
+      "kind": "IDENTIFIER",
+      "value": "message",
+      "lexeme": "message"
+    },
+    {
+      "start": 55,
+      "line": 2,
+      "column": 16,
+      "length": 1,
+      "kind": "EQUAL",
+      "value": "=",
+      "lexeme": "="
+    },
+    {
+      "start": 57,
+      "line": 2,
+      "column": 18,
+      "length": 7,
+      "kind": "STRING_LITERAL",
+      "value": "Hello",
+      "lexeme": "\"Hello\""
+    },
+    {
+      "start": 65,
+      "line": 3,
+      "column": 1,
+      "length": 5,
+      "kind": "PRINT",
+      "value": "print",
+      "lexeme": "print"
+    },
+    {
+      "start": 70,
+      "line": 3,
+      "column": 6,
+      "length": 1,
+      "kind": "LPAREN",
+      "value": "(",
+      "lexeme": "("
+    },
+    {
+      "start": 71,
+      "line": 3,
+      "column": 7,
+      "length": 7,
+      "kind": "IDENTIFIER",
+      "value": "message",
+      "lexeme": "message"
+    },
+    {
+      "start": 78,
+      "line": 3,
+      "column": 14,
+      "length": 1,
+      "kind": "RPAREN",
+      "value": ")",
+      "lexeme": ")"
+    },
+    {
+      "start": 79,
+      "line": 3,
+      "column": 15,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 80,
+      "line": 3,
+      "column": 16,
+      "length": 0,
+      "kind": "EOF",
+      "lexeme": "",
+      "value": ""
+    }
+  ],
+  "ast": null,
+  "symbols": [],
+  "diagnostics": [
+    {
+      "phase": "Syntax",
+      "message": "Expected ';' after declaration.",
+      "line": 3,
+      "column": 1,
+      "start": 65,
+      "length": 5
+    }
+  ],
+  "output": [],
+  "phases": [
+    {
+      "id": "lexical",
+      "label": "Lexical analysis",
+      "status": "success",
+      "count": 10
+    },
+    {
+      "id": "syntax",
+      "label": "Syntax analysis",
+      "status": "error",
+      "count": 0
+    },
+    {
+      "id": "semantic",
+      "label": "Semantic analysis",
+      "status": "skipped",
+      "count": 0
+    }
+  ]
+}

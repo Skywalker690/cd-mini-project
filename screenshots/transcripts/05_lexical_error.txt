@@ -1,8 +1,0 @@
-build\mini_compiler.exe examples\lexical_error.str --check
-Exit code: 1
-
-STRING PROCESSING MINI COMPILER (C99)
-
-Lexical error at 2:24: Invalid escape. Allowed: \n \t \r \\ \".
-  string message = "Hello\q";
-                         ^

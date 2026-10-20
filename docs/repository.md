@@ -1,15 +1,13 @@
 # Git Repository
 
-This project is a local Git repository connected to the existing remote:
+Configured repository: [Skywalker690/cd-mini-project](https://github.com/Skywalker690/cd-mini-project).
 
-[Skywalker690/cd-mini-project](https://github.com/Skywalker690/cd-mini-project)
+The browser refactor is committed locally on feat/static-browser-compiler. The prior C version remains in Git history. The completed browser branch has not been pushed to this public GitHub repository.
 
-The configured GitHub repository is public. The completed project is committed locally on `feat/string-mini-compiler-c`. The local Git repository satisfies the Git repository submission requirement. The feature branch has not been pushed to GitHub.
-
-After reviewing the source and completing group details, publish the branch when ready:
+After reviewing the app and completing group details, push the branch when ready:
 
 ```sh
-git push -u origin feat/string-mini-compiler-c
+git push -u origin feat/static-browser-compiler
 ```
 
-Use the branch's GitHub page or merge it through your normal review process before sharing a link to the completed code with faculty. Build outputs and local authoring tools are ignored. The downloadable local archive includes the built Windows executable, while the Git repository contains portable C source and build instructions.
+For GitHub Pages, select a branch containing the browser version and use / (root). The root index.html and .nojekyll are ready for static serving. The optional dist folder is the portable upload package for other hosts.

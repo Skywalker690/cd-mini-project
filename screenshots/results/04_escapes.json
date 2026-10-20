@@ -1,0 +1,441 @@
+{
+  "source": "string title = \"String processing\";\nprint(title + \"\\nA new line begins here.\");\nprint(\"Name:\\tAda\");\nprint(\"She said: \\\"Hello\\\"\");\nprint(\"Path: C:\\\\project\\\\source\");\nprint(\"A literal backslash and n: \\\\n\");",
+  "success": true,
+  "tokens": [
+    {
+      "start": 0,
+      "line": 1,
+      "column": 1,
+      "length": 6,
+      "kind": "STRING",
+      "value": "string",
+      "lexeme": "string"
+    },
+    {
+      "start": 7,
+      "line": 1,
+      "column": 8,
+      "length": 5,
+      "kind": "IDENTIFIER",
+      "value": "title",
+      "lexeme": "title"
+    },
+    {
+      "start": 13,
+      "line": 1,
+      "column": 14,
+      "length": 1,
+      "kind": "EQUAL",
+      "value": "=",
+      "lexeme": "="
+    },
+    {
+      "start": 15,
+      "line": 1,
+      "column": 16,
+      "length": 19,
+      "kind": "STRING_LITERAL",
+      "value": "String processing",
+      "lexeme": "\"String processing\""
+    },
+    {
+      "start": 34,
+      "line": 1,
+      "column": 35,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 36,
+      "line": 2,
+      "column": 1,
+      "length": 5,
+      "kind": "PRINT",
+      "value": "print",
+      "lexeme": "print"
+    },
+    {
+      "start": 41,
+      "line": 2,
+      "column": 6,
+      "length": 1,
+      "kind": "LPAREN",
+      "value": "(",
+      "lexeme": "("
+    },
+    {
+      "start": 42,
+      "line": 2,
+      "column": 7,
+      "length": 5,
+      "kind": "IDENTIFIER",
+      "value": "title",
+      "lexeme": "title"
+    },
+    {
+      "start": 48,
+      "line": 2,
+      "column": 13,
+      "length": 1,
+      "kind": "PLUS",
+      "value": "+",
+      "lexeme": "+"
+    },
+    {
+      "start": 50,
+      "line": 2,
+      "column": 15,
+      "length": 27,
+      "kind": "STRING_LITERAL",
+      "value": "\nA new line begins here.",
+      "lexeme": "\"\\nA new line begins here.\""
+    },
+    {
+      "start": 77,
+      "line": 2,
+      "column": 42,
+      "length": 1,
+      "kind": "RPAREN",
+      "value": ")",
+      "lexeme": ")"
+    },
+    {
+      "start": 78,
+      "line": 2,
+      "column": 43,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 80,
+      "line": 3,
+      "column": 1,
+      "length": 5,
+      "kind": "PRINT",
+      "value": "print",
+      "lexeme": "print"
+    },
+    {
+      "start": 85,
+      "line": 3,
+      "column": 6,
+      "length": 1,
+      "kind": "LPAREN",
+      "value": "(",
+      "lexeme": "("
+    },
+    {
+      "start": 86,
+      "line": 3,
+      "column": 7,
+      "length": 12,
+      "kind": "STRING_LITERAL",
+      "value": "Name:\tAda",
+      "lexeme": "\"Name:\\tAda\""
+    },
+    {
+      "start": 98,
+      "line": 3,
+      "column": 19,
+      "length": 1,
+      "kind": "RPAREN",
+      "value": ")",
+      "lexeme": ")"
+    },
+    {
+      "start": 99,
+      "line": 3,
+      "column": 20,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 101,
+      "line": 4,
+      "column": 1,
+      "length": 5,
+      "kind": "PRINT",
+      "value": "print",
+      "lexeme": "print"
+    },
+    {
+      "start": 106,
+      "line": 4,
+      "column": 6,
+      "length": 1,
+      "kind": "LPAREN",
+      "value": "(",
+      "lexeme": "("
+    },
+    {
+      "start": 107,
+      "line": 4,
+      "column": 7,
+      "length": 21,
+      "kind": "STRING_LITERAL",
+      "value": "She said: \"Hello\"",
+      "lexeme": "\"She said: \\\"Hello\\\"\""
+    },
+    {
+      "start": 128,
+      "line": 4,
+      "column": 28,
+      "length": 1,
+      "kind": "RPAREN",
+      "value": ")",
+      "lexeme": ")"
+    },
+    {
+      "start": 129,
+      "line": 4,
+      "column": 29,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 131,
+      "line": 5,
+      "column": 1,
+      "length": 5,
+      "kind": "PRINT",
+      "value": "print",
+      "lexeme": "print"
+    },
+    {
+      "start": 136,
+      "line": 5,
+      "column": 6,
+      "length": 1,
+      "kind": "LPAREN",
+      "value": "(",
+      "lexeme": "("
+    },
+    {
+      "start": 137,
+      "line": 5,
+      "column": 7,
+      "length": 27,
+      "kind": "STRING_LITERAL",
+      "value": "Path: C:\\project\\source",
+      "lexeme": "\"Path: C:\\\\project\\\\source\""
+    },
+    {
+      "start": 164,
+      "line": 5,
+      "column": 34,
+      "length": 1,
+      "kind": "RPAREN",
+      "value": ")",
+      "lexeme": ")"
+    },
+    {
+      "start": 165,
+      "line": 5,
+      "column": 35,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 167,
+      "line": 6,
+      "column": 1,
+      "length": 5,
+      "kind": "PRINT",
+      "value": "print",
+      "lexeme": "print"
+    },
+    {
+      "start": 172,
+      "line": 6,
+      "column": 6,
+      "length": 1,
+      "kind": "LPAREN",
+      "value": "(",
+      "lexeme": "("
+    },
+    {
+      "start": 173,
+      "line": 6,
+      "column": 7,
+      "length": 32,
+      "kind": "STRING_LITERAL",
+      "value": "A literal backslash and n: \\n",
+      "lexeme": "\"A literal backslash and n: \\\\n\""
+    },
+    {
+      "start": 205,
+      "line": 6,
+      "column": 39,
+      "length": 1,
+      "kind": "RPAREN",
+      "value": ")",
+      "lexeme": ")"
+    },
+    {
+      "start": 206,
+      "line": 6,
+      "column": 40,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 207,
+      "line": 6,
+      "column": 41,
+      "length": 0,
+      "kind": "EOF",
+      "lexeme": "",
+      "value": ""
+    }
+  ],
+  "ast": {
+    "type": "Program",
+    "line": 1,
+    "column": 1,
+    "start": 0,
+    "body": [
+      {
+        "type": "Declaration",
+        "line": 1,
+        "column": 8,
+        "start": 7,
+        "name": "title",
+        "expression": {
+          "type": "Literal",
+          "line": 1,
+          "column": 16,
+          "start": 15,
+          "value": "String processing"
+        }
+      },
+      {
+        "type": "Print",
+        "line": 2,
+        "column": 1,
+        "start": 36,
+        "expression": {
+          "type": "Concat",
+          "line": 2,
+          "column": 13,
+          "start": 48,
+          "left": {
+            "type": "Identifier",
+            "line": 2,
+            "column": 7,
+            "start": 42,
+            "name": "title"
+          },
+          "right": {
+            "type": "Literal",
+            "line": 2,
+            "column": 15,
+            "start": 50,
+            "value": "\nA new line begins here."
+          }
+        }
+      },
+      {
+        "type": "Print",
+        "line": 3,
+        "column": 1,
+        "start": 80,
+        "expression": {
+          "type": "Literal",
+          "line": 3,
+          "column": 7,
+          "start": 86,
+          "value": "Name:\tAda"
+        }
+      },
+      {
+        "type": "Print",
+        "line": 4,
+        "column": 1,
+        "start": 101,
+        "expression": {
+          "type": "Literal",
+          "line": 4,
+          "column": 7,
+          "start": 107,
+          "value": "She said: \"Hello\""
+        }
+      },
+      {
+        "type": "Print",
+        "line": 5,
+        "column": 1,
+        "start": 131,
+        "expression": {
+          "type": "Literal",
+          "line": 5,
+          "column": 7,
+          "start": 137,
+          "value": "Path: C:\\project\\source"
+        }
+      },
+      {
+        "type": "Print",
+        "line": 6,
+        "column": 1,
+        "start": 167,
+        "expression": {
+          "type": "Literal",
+          "line": 6,
+          "column": 7,
+          "start": 173,
+          "value": "A literal backslash and n: \\n"
+        }
+      }
+    ]
+  },
+  "symbols": [
+    {
+      "name": "title",
+      "type": "string",
+      "line": 1,
+      "initialized": true,
+      "length": 17,
+      "value": "String processing"
+    }
+  ],
+  "diagnostics": [],
+  "output": [
+    "String processing\nA new line begins here.",
+    "Name:\tAda",
+    "She said: \"Hello\"",
+    "Path: C:\\project\\source",
+    "A literal backslash and n: \\n"
+  ],
+  "phases": [
+    {
+      "id": "lexical",
+      "label": "Lexical analysis",
+      "status": "success",
+      "count": 33
+    },
+    {
+      "id": "syntax",
+      "label": "Syntax analysis",
+      "status": "success",
+      "count": 15
+    },
+    {
+      "id": "semantic",
+      "label": "Semantic analysis",
+      "status": "success",
+      "count": 1
+    }
+  ]
+}

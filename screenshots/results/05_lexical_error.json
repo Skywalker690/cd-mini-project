@@ -1,0 +1,66 @@
+{
+  "source": "// The escape \\q is deliberately invalid.\nstring message = \"Hello\\q\";\nprint(message);",
+  "success": false,
+  "tokens": [
+    {
+      "start": 42,
+      "line": 2,
+      "column": 1,
+      "length": 6,
+      "kind": "STRING",
+      "value": "string",
+      "lexeme": "string"
+    },
+    {
+      "start": 49,
+      "line": 2,
+      "column": 8,
+      "length": 7,
+      "kind": "IDENTIFIER",
+      "value": "message",
+      "lexeme": "message"
+    },
+    {
+      "start": 57,
+      "line": 2,
+      "column": 16,
+      "length": 1,
+      "kind": "EQUAL",
+      "value": "=",
+      "lexeme": "="
+    }
+  ],
+  "ast": null,
+  "symbols": [],
+  "diagnostics": [
+    {
+      "phase": "Lexical",
+      "message": "Invalid escape. Use \\n, \\t, \\r, \\\\ or \\\".",
+      "line": 2,
+      "column": 24,
+      "start": 65,
+      "length": 1
+    }
+  ],
+  "output": [],
+  "phases": [
+    {
+      "id": "lexical",
+      "label": "Lexical analysis",
+      "status": "error",
+      "count": 0
+    },
+    {
+      "id": "syntax",
+      "label": "Syntax analysis",
+      "status": "skipped",
+      "count": 0
+    },
+    {
+      "id": "semantic",
+      "label": "Semantic analysis",
+      "status": "skipped",
+      "count": 0
+    }
+  ]
+}

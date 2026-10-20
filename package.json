@@ -1,0 +1,12 @@
+{
+  "name": "stringlab-compiler-playground",
+  "version": "2.0.0",
+  "private": true,
+  "description": "A fully static string-language compiler front end and demonstration playground.",
+  "scripts": {
+    "test": "node --test tests/compiler.test.cjs",
+    "test:browser": "node tests/browser.cjs",
+    "build": "node scripts/build.mjs"
+  },
+  "engines": { "node": ">=20" }
+}

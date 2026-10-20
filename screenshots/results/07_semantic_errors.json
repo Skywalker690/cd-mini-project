@@ -1,0 +1,282 @@
+{
+  "source": "// Valid syntax does not always mean valid meaning.\nstring message;\nprint(message);\nunknown = \"Hello\";\nstring message = \"Again\";",
+  "success": false,
+  "tokens": [
+    {
+      "start": 52,
+      "line": 2,
+      "column": 1,
+      "length": 6,
+      "kind": "STRING",
+      "value": "string",
+      "lexeme": "string"
+    },
+    {
+      "start": 59,
+      "line": 2,
+      "column": 8,
+      "length": 7,
+      "kind": "IDENTIFIER",
+      "value": "message",
+      "lexeme": "message"
+    },
+    {
+      "start": 66,
+      "line": 2,
+      "column": 15,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 68,
+      "line": 3,
+      "column": 1,
+      "length": 5,
+      "kind": "PRINT",
+      "value": "print",
+      "lexeme": "print"
+    },
+    {
+      "start": 73,
+      "line": 3,
+      "column": 6,
+      "length": 1,
+      "kind": "LPAREN",
+      "value": "(",
+      "lexeme": "("
+    },
+    {
+      "start": 74,
+      "line": 3,
+      "column": 7,
+      "length": 7,
+      "kind": "IDENTIFIER",
+      "value": "message",
+      "lexeme": "message"
+    },
+    {
+      "start": 81,
+      "line": 3,
+      "column": 14,
+      "length": 1,
+      "kind": "RPAREN",
+      "value": ")",
+      "lexeme": ")"
+    },
+    {
+      "start": 82,
+      "line": 3,
+      "column": 15,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 84,
+      "line": 4,
+      "column": 1,
+      "length": 7,
+      "kind": "IDENTIFIER",
+      "value": "unknown",
+      "lexeme": "unknown"
+    },
+    {
+      "start": 92,
+      "line": 4,
+      "column": 9,
+      "length": 1,
+      "kind": "EQUAL",
+      "value": "=",
+      "lexeme": "="
+    },
+    {
+      "start": 94,
+      "line": 4,
+      "column": 11,
+      "length": 7,
+      "kind": "STRING_LITERAL",
+      "value": "Hello",
+      "lexeme": "\"Hello\""
+    },
+    {
+      "start": 101,
+      "line": 4,
+      "column": 18,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 103,
+      "line": 5,
+      "column": 1,
+      "length": 6,
+      "kind": "STRING",
+      "value": "string",
+      "lexeme": "string"
+    },
+    {
+      "start": 110,
+      "line": 5,
+      "column": 8,
+      "length": 7,
+      "kind": "IDENTIFIER",
+      "value": "message",
+      "lexeme": "message"
+    },
+    {
+      "start": 118,
+      "line": 5,
+      "column": 16,
+      "length": 1,
+      "kind": "EQUAL",
+      "value": "=",
+      "lexeme": "="
+    },
+    {
+      "start": 120,
+      "line": 5,
+      "column": 18,
+      "length": 7,
+      "kind": "STRING_LITERAL",
+      "value": "Again",
+      "lexeme": "\"Again\""
+    },
+    {
+      "start": 127,
+      "line": 5,
+      "column": 25,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 128,
+      "line": 5,
+      "column": 26,
+      "length": 0,
+      "kind": "EOF",
+      "lexeme": "",
+      "value": ""
+    }
+  ],
+  "ast": {
+    "type": "Program",
+    "line": 2,
+    "column": 1,
+    "start": 52,
+    "body": [
+      {
+        "type": "Declaration",
+        "line": 2,
+        "column": 8,
+        "start": 59,
+        "name": "message",
+        "expression": null
+      },
+      {
+        "type": "Print",
+        "line": 3,
+        "column": 1,
+        "start": 68,
+        "expression": {
+          "type": "Identifier",
+          "line": 3,
+          "column": 7,
+          "start": 74,
+          "name": "message"
+        }
+      },
+      {
+        "type": "Assignment",
+        "line": 4,
+        "column": 1,
+        "start": 84,
+        "name": "unknown",
+        "expression": {
+          "type": "Literal",
+          "line": 4,
+          "column": 11,
+          "start": 94,
+          "value": "Hello"
+        }
+      },
+      {
+        "type": "Declaration",
+        "line": 5,
+        "column": 8,
+        "start": 110,
+        "name": "message",
+        "expression": {
+          "type": "Literal",
+          "line": 5,
+          "column": 18,
+          "start": 120,
+          "value": "Again"
+        }
+      }
+    ]
+  },
+  "symbols": [
+    {
+      "name": "message",
+      "type": "string",
+      "line": 2,
+      "initialized": false,
+      "length": 0,
+      "value": null
+    }
+  ],
+  "diagnostics": [
+    {
+      "phase": "Semantic",
+      "message": "Variable 'message' is not initialized.",
+      "line": 3,
+      "column": 7,
+      "start": 74,
+      "length": 7
+    },
+    {
+      "phase": "Semantic",
+      "message": "Variable 'unknown' is not declared.",
+      "line": 4,
+      "column": 1,
+      "start": 84,
+      "length": 7
+    },
+    {
+      "phase": "Semantic",
+      "message": "Variable 'message' is already declared on line 2.",
+      "line": 5,
+      "column": 8,
+      "start": 110,
+      "length": 7
+    }
+  ],
+  "output": [],
+  "phases": [
+    {
+      "id": "lexical",
+      "label": "Lexical analysis",
+      "status": "success",
+      "count": 18
+    },
+    {
+      "id": "syntax",
+      "label": "Syntax analysis",
+      "status": "success",
+      "count": 8
+    },
+    {
+      "id": "semantic",
+      "label": "Semantic analysis",
+      "status": "error",
+      "count": 1
+    }
+  ]
+}

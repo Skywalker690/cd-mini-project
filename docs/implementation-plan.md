@@ -1,23 +1,13 @@
-# C Mini Compiler Implementation Plan
+# Static Browser Refactor Implementation Record
 
-**Goal:** Deliver a working C99 string-language compiler front end and submission materials.
-**Spec:** docs/design.md
-**Implementation:** One C file divided by phase, standard library only. Python is an optional test runner.
+- [x] Replace the C runtime with a pure JavaScript compiler engine.
+- [x] Write failing tests, implement the engine and pass 29 core tests.
+- [x] Build the HTML/CSS playground, source editor, phase strip and result tabs.
+- [x] Add examples, file import, source/AST/report downloads and language guide.
+- [x] Verify stale results, keyboard behavior, safe rendering, mobile and file:// use.
+- [x] Capture actual browser screenshots and engine result JSON.
+- [x] Refresh README, grammar, report, slides, contribution sheet and deployment notes.
+- [x] Final build, review fixes and verified static deployment.
+- [x] Save the completed local commit on feat/static-browser-compiler.
 
-## Constraints and review focus
-Validate declarations, assignment, concatenation, output, literals and escapes. Guard every fixed buffer. Test escaped quotes, CRLF, EOF, comments inside strings, embedded NUL, initialization order, capacity boundaries and CLI failures. Never execute an invalid program or invent contribution details.
-
-## Tasks
-- [x] Write black-box tests and observe missing executable.
-- [x] Implement and build src/mini_compiler.c with C99 warnings as errors.
-- [x] Run automated tests and demonstrate all success/error examples and DOT export.
-- [x] Supply Windows/Linux build commands and launch scripts.
-- [x] Document CFG transformations, FIRST/FOLLOW, architecture and semantics.
-- [x] Capture compiler output and render labeled screenshots.
-- [x] Create and visually inspect the report and editable presentation.
-- [x] Verify the submission checklist and existing GitHub remote; prepare the completed local branch.
-
-## Progress
-The initial Python direction was replaced by C following the user's explicit preference. Runtime code will be C only.
-
-Final verification: 26 automated test methods pass. Both I/O review findings were reproduced by failing tests, fixed, and verified with the full suite. Report: 9 pages. Slides: 12. Screenshots: 7. The public GitHub remote is preserved, and publication of the completed local branch is left to the user. No unaddressed code-review findings remain.
+The accepted scope and constraints are in docs/browser-refactor-plan.md. The browser implementation supersedes C. Static deployment never runs application server code. Missing group identities and actual contributions are intentionally left for the group.

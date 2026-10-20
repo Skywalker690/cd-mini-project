@@ -1,0 +1,388 @@
+{
+  "source": "// A small language. A complete compiler front end.\nstring name = \"World\";\nstring greeting;\ngreeting = \"Hello, \" + name + \"!\";\n\nprint(greeting);\nprint(\"Made of strings. Built in your browser.\");",
+  "success": true,
+  "tokens": [
+    {
+      "start": 52,
+      "line": 2,
+      "column": 1,
+      "length": 6,
+      "kind": "STRING",
+      "value": "string",
+      "lexeme": "string"
+    },
+    {
+      "start": 59,
+      "line": 2,
+      "column": 8,
+      "length": 4,
+      "kind": "IDENTIFIER",
+      "value": "name",
+      "lexeme": "name"
+    },
+    {
+      "start": 64,
+      "line": 2,
+      "column": 13,
+      "length": 1,
+      "kind": "EQUAL",
+      "value": "=",
+      "lexeme": "="
+    },
+    {
+      "start": 66,
+      "line": 2,
+      "column": 15,
+      "length": 7,
+      "kind": "STRING_LITERAL",
+      "value": "World",
+      "lexeme": "\"World\""
+    },
+    {
+      "start": 73,
+      "line": 2,
+      "column": 22,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 75,
+      "line": 3,
+      "column": 1,
+      "length": 6,
+      "kind": "STRING",
+      "value": "string",
+      "lexeme": "string"
+    },
+    {
+      "start": 82,
+      "line": 3,
+      "column": 8,
+      "length": 8,
+      "kind": "IDENTIFIER",
+      "value": "greeting",
+      "lexeme": "greeting"
+    },
+    {
+      "start": 90,
+      "line": 3,
+      "column": 16,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 92,
+      "line": 4,
+      "column": 1,
+      "length": 8,
+      "kind": "IDENTIFIER",
+      "value": "greeting",
+      "lexeme": "greeting"
+    },
+    {
+      "start": 101,
+      "line": 4,
+      "column": 10,
+      "length": 1,
+      "kind": "EQUAL",
+      "value": "=",
+      "lexeme": "="
+    },
+    {
+      "start": 103,
+      "line": 4,
+      "column": 12,
+      "length": 9,
+      "kind": "STRING_LITERAL",
+      "value": "Hello, ",
+      "lexeme": "\"Hello, \""
+    },
+    {
+      "start": 113,
+      "line": 4,
+      "column": 22,
+      "length": 1,
+      "kind": "PLUS",
+      "value": "+",
+      "lexeme": "+"
+    },
+    {
+      "start": 115,
+      "line": 4,
+      "column": 24,
+      "length": 4,
+      "kind": "IDENTIFIER",
+      "value": "name",
+      "lexeme": "name"
+    },
+    {
+      "start": 120,
+      "line": 4,
+      "column": 29,
+      "length": 1,
+      "kind": "PLUS",
+      "value": "+",
+      "lexeme": "+"
+    },
+    {
+      "start": 122,
+      "line": 4,
+      "column": 31,
+      "length": 3,
+      "kind": "STRING_LITERAL",
+      "value": "!",
+      "lexeme": "\"!\""
+    },
+    {
+      "start": 125,
+      "line": 4,
+      "column": 34,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 128,
+      "line": 6,
+      "column": 1,
+      "length": 5,
+      "kind": "PRINT",
+      "value": "print",
+      "lexeme": "print"
+    },
+    {
+      "start": 133,
+      "line": 6,
+      "column": 6,
+      "length": 1,
+      "kind": "LPAREN",
+      "value": "(",
+      "lexeme": "("
+    },
+    {
+      "start": 134,
+      "line": 6,
+      "column": 7,
+      "length": 8,
+      "kind": "IDENTIFIER",
+      "value": "greeting",
+      "lexeme": "greeting"
+    },
+    {
+      "start": 142,
+      "line": 6,
+      "column": 15,
+      "length": 1,
+      "kind": "RPAREN",
+      "value": ")",
+      "lexeme": ")"
+    },
+    {
+      "start": 143,
+      "line": 6,
+      "column": 16,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 145,
+      "line": 7,
+      "column": 1,
+      "length": 5,
+      "kind": "PRINT",
+      "value": "print",
+      "lexeme": "print"
+    },
+    {
+      "start": 150,
+      "line": 7,
+      "column": 6,
+      "length": 1,
+      "kind": "LPAREN",
+      "value": "(",
+      "lexeme": "("
+    },
+    {
+      "start": 151,
+      "line": 7,
+      "column": 7,
+      "length": 41,
+      "kind": "STRING_LITERAL",
+      "value": "Made of strings. Built in your browser.",
+      "lexeme": "\"Made of strings. Built in your browser.\""
+    },
+    {
+      "start": 192,
+      "line": 7,
+      "column": 48,
+      "length": 1,
+      "kind": "RPAREN",
+      "value": ")",
+      "lexeme": ")"
+    },
+    {
+      "start": 193,
+      "line": 7,
+      "column": 49,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 194,
+      "line": 7,
+      "column": 50,
+      "length": 0,
+      "kind": "EOF",
+      "lexeme": "",
+      "value": ""
+    }
+  ],
+  "ast": {
+    "type": "Program",
+    "line": 2,
+    "column": 1,
+    "start": 52,
+    "body": [
+      {
+        "type": "Declaration",
+        "line": 2,
+        "column": 8,
+        "start": 59,
+        "name": "name",
+        "expression": {
+          "type": "Literal",
+          "line": 2,
+          "column": 15,
+          "start": 66,
+          "value": "World"
+        }
+      },
+      {
+        "type": "Declaration",
+        "line": 3,
+        "column": 8,
+        "start": 82,
+        "name": "greeting",
+        "expression": null
+      },
+      {
+        "type": "Assignment",
+        "line": 4,
+        "column": 1,
+        "start": 92,
+        "name": "greeting",
+        "expression": {
+          "type": "Concat",
+          "line": 4,
+          "column": 29,
+          "start": 120,
+          "left": {
+            "type": "Concat",
+            "line": 4,
+            "column": 22,
+            "start": 113,
+            "left": {
+              "type": "Literal",
+              "line": 4,
+              "column": 12,
+              "start": 103,
+              "value": "Hello, "
+            },
+            "right": {
+              "type": "Identifier",
+              "line": 4,
+              "column": 24,
+              "start": 115,
+              "name": "name"
+            }
+          },
+          "right": {
+            "type": "Literal",
+            "line": 4,
+            "column": 31,
+            "start": 122,
+            "value": "!"
+          }
+        }
+      },
+      {
+        "type": "Print",
+        "line": 6,
+        "column": 1,
+        "start": 128,
+        "expression": {
+          "type": "Identifier",
+          "line": 6,
+          "column": 7,
+          "start": 134,
+          "name": "greeting"
+        }
+      },
+      {
+        "type": "Print",
+        "line": 7,
+        "column": 1,
+        "start": 145,
+        "expression": {
+          "type": "Literal",
+          "line": 7,
+          "column": 7,
+          "start": 151,
+          "value": "Made of strings. Built in your browser."
+        }
+      }
+    ]
+  },
+  "symbols": [
+    {
+      "name": "name",
+      "type": "string",
+      "line": 2,
+      "initialized": true,
+      "length": 5,
+      "value": "World"
+    },
+    {
+      "name": "greeting",
+      "type": "string",
+      "line": 3,
+      "initialized": true,
+      "length": 13,
+      "value": "Hello, World!"
+    }
+  ],
+  "diagnostics": [],
+  "output": [
+    "Hello, World!",
+    "Made of strings. Built in your browser."
+  ],
+  "phases": [
+    {
+      "id": "lexical",
+      "label": "Lexical analysis",
+      "status": "success",
+      "count": 27
+    },
+    {
+      "id": "syntax",
+      "label": "Syntax analysis",
+      "status": "success",
+      "count": 14
+    },
+    {
+      "id": "semantic",
+      "label": "Semantic analysis",
+      "status": "success",
+      "count": 2
+    }
+  ]
+}

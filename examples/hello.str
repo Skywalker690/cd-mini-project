@@ -1,6 +1,6 @@
-// All required features in one small program.
+// StringLab browser demonstration.
 string name = "World";
 string greeting;
 greeting = "Hello, " + name + "!";
 print(greeting);
-print("Mini compiler in C");
+print("Made of strings. Built in your browser.");

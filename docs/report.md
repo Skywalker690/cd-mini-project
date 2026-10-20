@@ -1,32 +1,30 @@
-# String Processing Mini Compiler
+# StringLab String Processing Mini Compiler
 
 Compiler Design Mini Project Report
 
-Implementation language: C99
+Implementation HTML CSS and JavaScript
 
 Project Based Learning Activity
 
-Presentation and demonstration: 23 October 2026
+Presentation and demonstration 23 October 2026
 
-College and department: To be completed by the group
+College and department To be completed by the group
 
-Group number and faculty: To be completed by the group
+Faculty and group number To be completed by the group
 
-Member names and roll numbers: See the contribution sheet
+Members and roll numbers See the contribution sheet
 
 ## Abstract
-
-This project implements a compiler front end for a small string-processing language in standard C. The language supports string declarations, assignment, concatenation and string-output statements. The front end scans source text into positioned tokens, constructs an abstract syntax tree using recursive descent, and performs semantic checks with a symbol table. It validates string delimiters and escape sequences, reports useful diagnostics and prevents execution when compilation fails. A separate interpreter previews accepted programs. The implementation uses one C source file divided into compiler phases and requires no third-party runtime libraries.
+StringLab is a static browser application implementing a compiler front end for a small string-processing language. It supports string declarations, assignment, concatenation and output. A JavaScript lexer validates literals and escape sequences and produces positioned tokens. A recursive-descent parser constructs an abstract syntax tree from a transformed LL(1) grammar. Semantic analysis checks declarations, initialization, duplicate names and string lengths. A separate interpreter previews only accepted programs. The browser interface makes each phase visible without requiring a backend, database or installation.
 
 ## Objectives
-
-The project demonstrates lexical, syntax and semantic analysis through a small working language. Its main educational objective is to connect a CFG and its transformations to an understandable parser and AST. The source, examples, tests, grammar notes, screenshots and presentation support a reproducible classroom demonstration.
+The project connects CFG transformations to a working parser and explains lexical, syntax and semantic analysis through editable examples. Students can inspect tokens, explore an AST, review a symbol table and compare errors at different phases. The complete application is portable static files that can open directly from disk or deploy to a static host.
 
 <!-- pagebreak -->
 
 # Language Specification
 
-All variables have string type and one global scope. Identifiers are case sensitive and match the pattern [A-Za-z_][A-Za-z0-9_]*. The keywords are string and print. A declaration may include an initializer or leave the variable uninitialized. Reading an uninitialized variable is a semantic error. Assignment updates an existing variable. The + operator concatenates strings, and parentheses group expressions. Each print statement adds a newline. Every statement ends with a semicolon. Comments begin with // outside string literals and continue to the end of the line.
+All variables have string type and one global scope. Names are case sensitive and match [A-Za-z_][A-Za-z0-9_]*. The keywords are string and print. A declaration may initialize a variable or leave it uninitialized. Reading an uninitialized variable is a semantic error. Assignment updates an existing declaration. The + operator concatenates strings and parentheses group expressions. Every statement ends with a semicolon. Comments begin with // outside literals. Each print adds a newline.
 
 ```text
 string name = "World";
@@ -35,13 +33,12 @@ greeting = "Hello, " + name + "!";
 print(greeting);
 ```
 
-The example prints Hello, World!. It demonstrates initialized and uninitialized declarations, assignment, concatenation and output. Empty programs and empty strings are also valid.
+This example prints Hello, World!. Empty programs and empty strings are valid. Numeric literals and single-quoted strings are outside the language.
 
 ## String literals and escapes
+Strings use double quotes. Raw line breaks, unsupported escapes, unescaped ASCII controls and missing closing quotes are lexical errors. Escape decoding happens exactly once.
 
-String literals use double quotes. Raw line breaks, unescaped ASCII control characters, invalid escapes and missing closing quotes are lexical errors. Escape sequences decode exactly once.
-
-| Source escape | Decoded meaning |
+| Escape in source | Decoded meaning |
 | --- | --- |
 | \n | Newline |
 | \t | Horizontal tab |
@@ -49,38 +46,36 @@ String literals use double quotes. Raw line breaks, unescaped ASCII control char
 | \\ | Backslash |
 | \" | Double quote |
 
-For example, print("A\nB"); produces two lines. The source string "\\n" contains a backslash followed by n after decoding. Single quotes and numeric literals are outside the language. UTF-8 string bytes pass through unchanged, but the compiler does not validate Unicode encoding. Locations use one-based lines and byte columns.
+JavaScript preserves Unicode string content. Length limits and source columns use UTF-16 code units, not bytes or displayed glyph counts. CRLF counts as one newline. An initial BOM is accepted. NUL is rejected anywhere in the source, including strings and comments.
 
 <!-- pagebreak -->
 
-# Architecture and Lexical Analysis
+# Browser Architecture and Lexical Analysis
 
-The pipeline reads a source file, performs lexical analysis, parses tokens into an AST, and checks semantics. Only a successful pipeline enables preview execution. src/mini_compiler.c contains all runtime code in labeled sections. The standard C library supplies file handling, strings and diagnostics. setjmp and longjmp stop the lexer or parser after a fatal error without requiring error returns through every recursive parser function. Semantic analysis collects several errors in one pass.
+The application consists of five static files. index.html defines the page and dialogs, styles.css handles the responsive layout, examples.js embeds offline examples, compiler.js implements the language, and app.js manages the interface. There are no runtime packages or remote compiler services. Opening index.html directly is sufficient.
 
-## Data structures
+## Compilation pipeline
+The editor passes a source string to compileSource. The engine returns a serializable result containing success status, phase states, tokens, an AST, symbols, diagnostics and output. Every compilation owns its state. The lexer and parser stop on a fatal error. Semantic analysis can collect several independent errors. A failed phase prevents preview execution.
 
-Token stores the token kind, raw source span, decoded text and source location. Node stores an AST kind, token reference, expression children and a next pointer connecting statements. Symbol stores the name, declaration line, initialization state, string length and preview value. Fixed arrays hold these records, and explicit checks enforce their limits.
+## Lexer
+The lexer scans characters once, skips whitespace and line comments, reads complete identifiers before classifying keywords and validates double-quoted literals. An escape map converts the five accepted sequences. Tokens preserve both the raw lexeme and decoded value with one-based line and column locations. The EOF token makes end-of-input checks explicit.
 
-## Lexer algorithm
-
-The lexer advances through the source once. It skips whitespace and line comments, reads a complete identifier before recognizing keywords, and handles double-quoted literals with a separate escape state. It recognizes punctuation directly and rejects unexpected characters. Raw source spans remain available for the token display even though literal values are already decoded. CRLF advances one line. The file reader accepts an optional UTF-8 BOM and rejects embedded NUL bytes.
-
-| Token category | Example |
+| Token kind | Example |
 | --- | --- |
-| Keyword | string, print |
-| Identifier | name, greeting |
-| String literal | "Hello" |
-| Assignment and concatenation | =, + |
-| Delimiter | (, ), ; |
-| End of input | EOF |
+| STRING or PRINT | string, print |
+| IDENTIFIER | name, greeting |
+| STRING_LITERAL | "Hello" |
+| EQUAL or PLUS | =, + |
+| LPAREN RPAREN SEMICOLON | (, ), ; |
+| EOF | End of source |
 
-Reading an identifier before keyword comparison ensures that stringer is one identifier rather than the keyword string followed by another token. The sequence // inside a quoted string remains literal text.
+The identifier stringer remains one identifier. A // sequence inside a quoted string remains literal content. Source text is never executed as JavaScript.
 
 <!-- pagebreak -->
 
 # CFG and Grammar Transformations
 
-The initial grammar expresses repeated statements and concatenation with immediate left recursion. It also gives declarations two alternatives with a common prefix. Here id and literal are lexer tokens, and epsilon means the empty production.
+The original CFG contains immediate left recursion and a common declaration prefix. Here epsilon denotes the empty production.
 
 ```text
 Program -> Program Stmt | epsilon
@@ -93,52 +88,37 @@ Expr    -> Expr '+' Term | Term
 Term    -> literal | id | '(' Expr ')'
 ```
 
-## Removing immediate left recursion
-
-A direct recursive-descent implementation of Expr calling Expr before consuming input would recurse indefinitely. Applying A -> A alpha | beta gives A -> beta A-prime and A-prime -> alpha A-prime | epsilon.
+## Removing left recursion
+For A -> A alpha | beta, use A -> beta A-prime and A-prime -> alpha A-prime | epsilon. For Program, simplifying its empty base yields a zero-or-more statement list.
 
 ```text
-Expr     -> Term ExprTail
-ExprTail -> '+' Term ExprTail | epsilon
 Program  -> List
 List     -> Stmt List | epsilon
+Expr     -> Term ExprTail
+ExprTail -> '+' Term ExprTail | epsilon
 ```
 
-The original Program rule has epsilon as its nonrecursive alternative. Removing its left recursion and simplifying the empty prefix yields the zero-or-more statement list above. The implementation uses loops for both repetitions. The expression loop builds a left-associated AST, so a + b + c becomes Concat(Concat(a,b),c).
+The parser implements repetitions with loops. The expression loop folds each new operand into a left child, preserving a + b + c as Concat(Concat(a,b),c).
 
 ## Left factoring declarations
-
-Both declaration forms share the prefix string id. Factoring postpones the choice until the next token:
+Both declaration alternatives share string id. The next token then selects an initializer or the ending semicolon.
 
 ```text
 Decl -> 'string' id Init ';'
 Init -> '=' Expr | epsilon
 ```
 
-The complete grammar and derivation are retained separately in docs/grammar.md.
+The complete transformed grammar appears in the application language guide and docs/grammar.md.
 
 <!-- pagebreak -->
 
-# Predictive Grammar and Parsing
+# Predictive Parsing and the AST
 
-```text
-Program  -> List
-List     -> Stmt List | epsilon
-Stmt     -> Decl | Assign | Output
-Decl     -> 'string' id Init ';'
-Init     -> '=' Expr | epsilon
-Assign   -> id '=' Expr ';'
-Output   -> 'print' '(' Expr ')' ';'
-Expr     -> Term ExprTail
-ExprTail -> '+' Term ExprTail | epsilon
-Term     -> literal | id | '(' Expr ')'
-```
-
-The recursive-descent parser uses parse, statement, expression and primary. expect checks required tokens and reports the location of a missing or unexpected token. Syntax analysis stops after its first error. Parentheses affect grouping but do not create extra AST nodes.
+The transformed grammar is LL(1). Distinct first tokens select declaration, assignment or output. Nullable List, Init and ExprTail alternatives have no FIRST/FOLLOW conflicts.
 
 | Nonterminal | FIRST | FOLLOW |
 | --- | --- | --- |
-| Program, List | string, id, print, epsilon | $ |
+| Program and List | string, id, print, epsilon | $ |
 | Stmt | string, id, print | string, id, print, $ |
 | Decl | string | string, id, print, $ |
 | Assign | id | string, id, print, $ |
@@ -148,13 +128,7 @@ The recursive-descent parser uses parse, statement, expression and primary. expe
 | ExprTail | +, epsilon | ;, ) |
 | Term | literal, id, ( | +, ;, ) |
 
-The symbol $ denotes end of input. Distinct first tokens select the Stmt and Term alternatives. The nullable alternatives in List, Init and ExprTail have no FIRST/FOLLOW conflicts. Therefore the transformed grammar is LL(1), and one lookahead token is sufficient.
-
-<!-- pagebreak -->
-
-# AST and Semantic Analysis
-
-For string a = "Hi"; followed by print(a + "!"); the AST is:
+The parser uses statement, expression and primary functions. An expect helper checks required punctuation and reports a positioned syntax error. Program stores statements in an ordered body array. Declarations, assignments and print nodes contain expressions. Concat has left and right children. Literal and Identifier are leaves.
 
 ```text
 Program
@@ -166,81 +140,75 @@ Program
       Literal "!"
 ```
 
-The AST preserves the program's meaning while omitting punctuation and grammar helper nodes. The console displays it as an indented tree. The --dot option exports the same structure in Graphviz DOT format, with next labels for statement links. Export preserves existing readable files, so each export needs a new filename.
-
-## Semantic rules
-
-The analyzer visits statements in source order. A declaration inserts an initially uninitialized symbol. If its initializer is valid, the symbol becomes initialized. Consequently, string x = x; fails because x has no value while its initializer is checked. Assignment requires an existing declaration. Identifier expressions require both declaration and initialization. Redeclaration reports the original declaration line and does not replace that symbol.
-
-String is the only type. The grammar restricts expressions to string literals, identifiers and concatenation. Semantic analysis verifies that identifiers denote usable strings and tracks the byte length of each expression. A concatenated value longer than 1023 bytes is rejected before preview execution. Failed initializers and assignments do not mark previously uninitialized variables as initialized.
-
-## Preview execution
-
-After successful checking, the interpreter evaluates the AST in source order using the symbol table's value fields. It copies literals, reads current variable values, joins concatenation operands and prints output expressions. All supported operations are deterministic because the language has no input or branches. The preceding length analysis proves that each evaluated string fits its buffer. The preview does not generate machine code.
+The AST above represents string a = "Hi"; followed by print(a + "!");. It omits punctuation and grammar helper nodes. The browser displays it as an expandable tree and offers JSON export.
 
 <!-- pagebreak -->
 
-# Testing and Successful Demonstration
+# Semantic Analysis and Preview
 
-The initial automated suite contains 26 unittest methods, several of which exercise multiple inputs. Python is only the optional development test runner. Each test invokes the compiled C executable as a separate process. The compiler has no Python runtime dependency.
+The analyzer visits statements in source order and stores symbols in a Map. A declaration inserts an initially uninitialized symbol, then checks its initializer. Therefore string x = x; is invalid. Assignment requires a prior declaration. Identifier expressions require declaration and initialization. Duplicate declarations report the original declaration line and do not replace it. Failed initializers or assignments do not initialize a previously uninitialized variable.
 
-| Test area | Evidence checked |
+String is the only type. The grammar permits string literals, identifiers and concatenation. Semantic analysis checks usable string identifiers and computes expression lengths. Concatenated values exceeding 1,023 UTF-16 code units are rejected before execution.
+
+## Preview interpreter
+After all three phases succeed, the interpreter evaluates the AST from top to bottom. A separate value Map handles literals, identifier reads, concatenation, assignments and output. Output accumulates as strings and is rendered only for accepted programs. There is no eval or Function call and no machine-code generation.
+
+## Browser interaction
+Source changes invalidate old results and disable result exports until recompilation. The interface uses textContent and text nodes for source, literals, token values and diagnostics, so quoted HTML remains data. Maps make names such as constructor and __proto__ ordinary identifiers. File import reads a user-selected file locally. Blob downloads save source, AST or a complete report without remote storage.
+
+![Expandable AST in the browser](../screenshots/03_ast.png)
+
+Figure 1. Actual browser capture of the source and interactive AST views.
+
+<!-- pagebreak -->
+
+# Application Demonstration
+
+Open index.html directly or visit the deployed static page. The default program compiles automatically. Choose an example, edit a string and press Compile and run or Ctrl/Cmd + Enter. The phase strip shows passed, failed and skipped phases. Tabs display output, positioned tokens, an expandable AST and symbols. Token and diagnostic locations select the corresponding source text.
+
+![StringLab browser playground](../screenshots/01_success.png)
+
+Figure 2. Actual browser capture of a successful program and its output.
+
+## Demonstration sequence
+Run Hello world, inspect Tokens, choose A tiny AST and expand the tree, then inspect Symbols. Choose Escape sequences to show decoded literals. Finally select the lexical, syntax and semantic error examples and explain why no preview runs after failure. Open Language guide to discuss transformations. Export a report and source file to demonstrate local downloads.
+
+The interface adapts to mobile screens. Native dialogs and keyboard-controlled tabs support navigation. In the editor, Tab inserts spaces and Shift + Tab moves focus out.
+
+<!-- pagebreak -->
+
+# Testing and Diagnostics
+
+The core suite uses Node's built-in test runner and contains 29 tests, several with multiple cases. Node is a development tool only. The browser application has no Node runtime dependency. The tests cover valid language behavior, escapes, empty inputs, Unicode strings, comments, CRLF, syntax and semantic failures, source locations, limits, state isolation and report serialization.
+
+Browser checks additionally exercise result tabs, AST expansion and collapse, all error examples, keyboard compilation, file import, source/AST/report downloads, stale results, inert HTML strings, dialogs, mobile overflow and direct file:// opening. All checks passed during preparation on 20 October 2026.
+
+![Semantic diagnostics in the browser](../screenshots/07_semantic_errors.png)
+
+Figure 3. Actual browser capture showing three independent semantic errors and no output preview.
+
+Diagnostics include the phase, a message, source line and one-based location. Clicking the location highlights the relevant source. Lexical or syntax failure stops later phases. Semantic analysis can report multiple errors. A NUL-in-comment regression test verified that NUL is rejected anywhere in source.
+
+<!-- pagebreak -->
+
+# Deployment Limits and Contributions
+
+The complete frontend can open directly from index.html with its adjacent CSS and JavaScript files. For a clean static upload folder, npm run build copies the application and project downloads into dist. This step is optional and uses no package installation. A static host serves these files while the browser performs all compiler work. No backend, database, API key, environment variable or application server is required.
+
+Programs and results remain in the current page's memory unless downloaded. A hosted first load needs a network connection to retrieve assets. Download the complete folder for guaranteed offline use. The project README documents static deployment and links to official hosting instructions.
+
+| Resource | Limit |
 | --- | --- |
-| Required features | Declarations, assignment, concatenation, print |
-| Literal handling | Escapes, empty strings, quotes, UTF-8 bytes |
-| Source handling | Comments, CRLF, positions, EOF, embedded NUL |
-| Failures | Lexical, syntax, semantic and CLI errors |
-| Boundaries | Source, token, symbol, string, identifier, nesting limits |
-| Preview and export | No execution after failure, check mode, AST DOT |
+| Source | 65,535 UTF-16 code units |
+| Tokens and AST nodes | 4,096 each, including EOF in the token count |
+| Symbols and ASCII identifier | 256 symbols and 63 characters per identifier |
+| Literal or concatenated value | 1,023 UTF-16 code units |
+| Parenthesis nesting and expression depth | 128 |
 
-Build verification uses C99 mode with Wall, Wextra, Wpedantic and Werror. The local verification toolchain is Zig 0.13.0's Clang-compatible C compiler. The same source uses no Zig language features. The 26-test suite passed on Windows during preparation on 20 October 2026.
-
-![Successful compiler output](../screenshots/01_success.png)
-
-Figure 1. A browser-rendered capture of an actual C executable transcript. Original commands and transcripts are retained under screenshots/transcripts.
-
-<!-- pagebreak -->
-
-# Diagnostics and Error Demonstration
-
-A lexical diagnostic identifies malformed literals or invalid characters. A syntax diagnostic identifies a token that does not satisfy the grammar. Semantic diagnostics identify invalid name usage after a valid AST has been built. Each diagnostic includes the phase, one-based line and byte column, a source excerpt and a caret. Error examples deliberately return exit code 1 and do not run the preview.
-
-![Invalid escape diagnostic](../screenshots/05_lexical_error.png)
-
-Figure 2. The lexer rejects an unsupported escape sequence.
-
-![Semantic diagnostics](../screenshots/07_semantic_errors.png)
-
-Figure 3. The analyzer detects uninitialized use, an undeclared assignment and redeclaration in one pass. These captures show actual executable transcripts rendered for readability.
-
-<!-- pagebreak -->
-
-# Build Usage Limits and Contributions
-
-On Windows, run build.bat and then build\mini_compiler.exe examples\hello.str. A fresh clone requires GCC, Clang or Zig on PATH. On another system, compile the one C file with a standard C99 compiler. The Makefile also provides Linux and macOS build and test targets. run_demo.bat demonstrates valid output, an AST export and the three error classes with pauses.
-
-```text
-gcc -std=c99 -Wall -Wextra -Wpedantic -O2
-    src/mini_compiler.c -o mini_compiler
-mini_compiler examples/hello.str
-mini_compiler examples/ast_demo.str --ast --dot ast.dot
-mini_compiler examples/semantic_error.str --check
-```
-
-The GCC build command above wraps onto two lines for the report and must be entered as one command. --tokens, --ast and --symbols select details. --check suppresses execution. Exit code 0 means success, 1 means compilation failure and 2 means usage or I/O failure.
-
-| Resource | Capacity |
-| --- | --- |
-| Source, tokens, AST nodes | 65535 bytes, 4096 including EOF, 4096 nodes |
-| Variables and identifier | 256 variables, 63 bytes per name |
-| Decoded literal or string value | 1023 bytes |
-| Parenthesis nesting and AST height | 128, including statement wrapper height |
-
-The project intentionally has one global scope and no numeric types, input, loops, functions, optimization or machine-code generation. Fixed capacities trade generality for a small, traceable implementation.
+The language has one global scope and no numeric types, input, loops, functions, optimization or machine-code generation.
 
 ## Individual contribution sheet
-
-Enter only actual work. The rows do not assert contributions and may be added or removed to match the group size. Full details and evidence belong in docs/contributions.md.
+Enter actual work and corresponding evidence. Add or remove rows to match the allotted group. Complete institution, faculty and group details before submission.
 
 | Name and roll number | Actual work and evidence |
 | --- | --- |
@@ -249,4 +217,4 @@ Enter only actual work. The rows do not assert contributions and may be added or
 | To be completed | To be completed |
 | To be completed | To be completed |
 
-The group must fill in institution, faculty, group and member details before submission. Review and understand the assistant-prepared implementation and follow institutional disclosure requirements. The repository information is recorded in docs/repository.md. The language specification comes from the supplied project topic. Examples and test results in this report come from the included implementation. The required compiler-front-end features are implemented and demonstrated by the supplied materials.
+The full contribution log is docs/contributions.md. The source language requirements come from the supplied topic. Screenshots and test evidence come from this browser implementation. Review and understand the assistant-prepared materials and follow institutional disclosure requirements.

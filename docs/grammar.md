@@ -80,14 +80,14 @@ Stmt selects Decl on `string`, Assign on `id`, and Output on `print`. Term selec
 | Token | Rule |
 | --- | --- |
 | Keyword | `string` or `print`, matched after reading a complete identifier |
-| Identifier | `[A-Za-z_][A-Za-z0-9_]*`, maximum 63 bytes |
+| Identifier | `[A-Za-z_][A-Za-z0-9_]*`, maximum 63 ASCII characters |
 | String literal | Double quotes surrounding zero or more ordinary characters or valid escapes |
 | Operators | `=` and `+` |
 | Delimiters | `(`, `)`, `;` |
 | Comment | `//` to the end of the current line, outside strings |
 | Whitespace | Space, tab, CR, LF, outside strings |
 
-Ordinary string bytes exclude quote, backslash, raw line breaks, ASCII control bytes 0 through 31 and 127. The only accepted escapes are `\n`, `\t`, `\r`, `\\`, and `\"`. A decoded string may contain at most 1023 bytes. UTF-8 string bytes pass through unchanged, but Unicode encoding is not validated. Locations use one-based lines and byte columns. CRLF counts as one newline. An optional UTF-8 BOM is accepted. Embedded NUL bytes in source files are rejected.
+Ordinary string characters exclude quote, backslash, raw line breaks, ASCII controls 0 through 31 and 127. The accepted escapes are `\n`, `\t`, `\r`, `\\`, and `\"`. Decode each escape exactly once. Source may contain at most 65,535 UTF-16 code units. A decoded literal or concatenated value may contain at most 1,023 UTF-16 code units. JavaScript preserves Unicode string content without normalization. Locations use one-based lines and UTF-16 code-unit columns. CRLF counts as one newline. An optional initial BOM is ignored. NUL is rejected anywhere in source, including strings and comments.
 
 ## AST example
 
@@ -110,4 +110,4 @@ Program
       Literal "!"
 ```
 
-The AST keeps semantic structure and omits punctuation and helper nonterminals. A linked `next` pointer connects statements. `--dot PATH` exports the same AST, with sibling links labeled `next`.
+The AST keeps semantic structure and omits punctuation and helper nonterminals. A Program node contains an ordered body array. Declaration, Assignment and Print nodes contain expression children. Concat has left and right children. The browser displays an expandable tree and exports it as JSON.

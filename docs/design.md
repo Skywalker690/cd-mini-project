@@ -1,15 +1,11 @@
-# String Processing Mini Compiler Design
+# StringLab Browser Application Design
 
-## Purpose
-Create a small, explainable compiler front end for the assigned string-processing language, suitable for the group demonstration on 23 October 2026. The supplied topic requires declarations, concatenation, assignment, string output, and validation of literals and escape sequences.
+The current user request supersedes the earlier C console implementation. StringLab is a buildless static HTML, CSS and JavaScript application. Every lexer, parser, AST, semantic and preview operation runs in the browser. No application backend, database, API or runtime installation is required.
 
-## Language
-Use C99 and only its standard library at runtime, as requested by the user. The source language has `string`, `print`, ASCII identifiers, double-quoted strings, `=`, `+`, parentheses, and semicolons. Single-line comments begin with `//`. Valid escapes are `\n`, `\t`, `\r`, `\\`, and `\"`. Variables have one global scope and must be declared and initialized before use. Declarations may omit an initializer. Empty programs and empty strings are valid. Literal newlines and unescaped control characters inside strings are errors. Numeric literals are outside the language.
+compiler.js exposes compileSource in the browser and through CommonJS for development tests. Each invocation owns its token, AST and symbol state. The lexer validates double-quoted literals and escapes. Recursive descent implements the transformed LL(1) grammar. Semantic analysis checks declaration order, initialization, duplicate names and string lengths. A separate interpreter previews only accepted programs.
 
-## Components
-`src/mini_compiler.c` contains clearly separated lexer, recursive-descent parser, semantic analyzer, AST display/export, preview interpreter, and command-line sections. The lexer retains raw lexemes and decoded literal values. Semantic analysis checks declaration, initialization, and string-length bounds. The pipeline stops on failure. A separate interpreter previews output only after all checks succeed. This is a compiler front end with an optional interpreter, without machine-code generation.
+app.js manages the editor, examples, phase strip, result tabs, AST expansion, local file import and Blob downloads. It uses text nodes rather than injecting user source as HTML. Source changes invalidate old results and disable result exports until recompilation. Programs remain in memory unless downloaded.
 
-The console prints positioned tokens, AST, symbol table, diagnostics, and preview output. Flags select phase detail or disable execution. It exports an AST in Graphviz DOT format. Fixed arrays keep the C code easy to explain, with explicit diagnostics for source, token, node, symbol, identifier, literal/value, and nesting limits.
+The interface supports desktop/mobile layouts, keyboard tabs, native dialogs and direct file:// opening. The optional build script copies the static application and project downloads into dist. The same files can be hosted by Sites, GitHub Pages or another static host.
 
-## Evidence and submission
-Use Python unittest only as an optional test runner that invokes the C executable. Include a formal CFG, transformations, FIRST/FOLLOW sets, example programs, screenshots rendered from captured compiler output, a project report, an editable presentation, a demonstration guide, and an honest contribution template. Preserve the existing Git repository and GitHub remote, and commit the completed feature branch locally for review. Missing personal details remain explicitly unfilled.
+Submission materials describe this browser implementation. Group identities and actual contribution records remain explicitly unfilled. The previous C implementation is retained in Git history rather than the active application.

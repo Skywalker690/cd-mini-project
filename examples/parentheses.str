@@ -1,5 +1,5 @@
 string a = "Mini";
-string b = "Compiler";
+string b = "compiler";
 string result = (a + " ") + b;
-result = result + " in C";
+result = result + " in the browser";
 print(result);
