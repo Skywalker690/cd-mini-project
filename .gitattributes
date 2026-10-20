@@ -1,0 +1,10 @@
+* text=auto
+*.c text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.str text eol=lf
+Makefile text eol=lf
+*.bat text eol=crlf
+*.png binary
+*.docx binary
+*.pptx binary

@@ -1,0 +1,6 @@
+// All required features in one small program.
+string name = "World";
+string greeting;
+greeting = "Hello, " + name + "!";
+print(greeting);
+print("Mini compiler in C");

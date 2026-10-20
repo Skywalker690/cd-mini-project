@@ -1,0 +1,6 @@
+string title = "String Processing";
+print(title + "\nSecond line");
+print("Name:\tAda");
+print("She said: \"Hello\"");
+print("Path: C:\\project\\source");
+print("Literal backslash and n: \\n");

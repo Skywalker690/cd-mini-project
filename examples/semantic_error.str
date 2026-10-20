@@ -1,0 +1,5 @@
+// Three independent semantic errors.
+string message;
+print(message);
+unknown = "Hello";
+string message = "Again";

@@ -1,0 +1,3 @@
+// The escape \q is deliberately invalid.
+string message = "Hello\q";
+print(message);

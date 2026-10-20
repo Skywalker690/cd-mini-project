@@ -1,0 +1,3 @@
+// The declaration deliberately has no semicolon.
+string message = "Hello"
+print(message);

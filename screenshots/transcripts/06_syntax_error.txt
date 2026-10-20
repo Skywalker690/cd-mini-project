@@ -1,0 +1,9 @@
+build\mini_compiler.exe examples\syntax_error.str --check
+Exit code: 1
+
+STRING PROCESSING MINI COMPILER (C99)
+[LEXER] OK - 10 tokens including EOF
+
+Syntax error at 3:1: Expected ';' after declaration.
+  print(message);
+  ^

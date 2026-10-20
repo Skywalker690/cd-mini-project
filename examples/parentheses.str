@@ -1,0 +1,5 @@
+string a = "Mini";
+string b = "Compiler";
+string result = (a + " ") + b;
+result = result + " in C";
+print(result);
