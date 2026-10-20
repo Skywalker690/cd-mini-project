@@ -2,12 +2,20 @@
 
 Configured repository: [Skywalker690/cd-mini-project](https://github.com/Skywalker690/cd-mini-project).
 
-The browser refactor is committed locally on feat/static-browser-compiler. The prior C version remains in Git history. The completed browser branch has not been pushed to this public GitHub repository.
+The browser refactor is integrated into `main`. The prior C version remains in Git history. The public demo is [StringLab on GitHub Pages](https://Skywalker690.github.io/cd-mini-project/).
 
-After reviewing the app and completing group details, push the branch when ready:
+For future changes, create a feature branch and push it:
 
 ```sh
-git push -u origin feat/static-browser-compiler
+git switch main
+git pull --ff-only
+git switch -c feat/your-change
+# Edit and check the app.
+npm test
+npm run build
+git add <changed-files>
+git commit -m "Describe your change"
+git push -u origin feat/your-change
 ```
 
-For GitHub Pages, select a branch containing the browser version and use / (root). The root index.html and .nojekyll are ready for static serving. The optional dist folder is the portable upload package for other hosts.
+Open a pull request to `main`. The Pages workflow checks the tests and static build. After merging, it automatically publishes the updated `dist/` folder. Keep the Pages publishing source set to **GitHub Actions**. See [deployment instructions](deployment.md).

@@ -11,6 +11,8 @@ Prepared on 20 October 2026 for the presentation on 23 October 2026.
 
 The report and slides are regenerated around the browser implementation and visually verified before delivery. Group identities and actual contribution records remain intentionally unfilled.
 
-Final artifact checks: all nine report pages and thirteen presentation slides were rendered and inspected. The presentation passed package, layout, font and import checks. The static Sites deployment returned succeeded. The public GitHub branch was not pushed.
+Final artifact checks: all nine report pages and thirteen presentation slides were rendered and inspected. The presentation passed package, layout, font and import checks. The earlier static Sites deployment returned succeeded.
+
+GitHub Pages uses the checked-in `.github/workflows/pages.yml` to test the compiler, build the static folder and deploy changes to `main`. Pull requests run validation without deployment. Only files copied into `dist/` are published.
 
 Automatic approval review blocked deleting three old generated files under the ignored build directory. They are not used by the application and are excluded from both downloadable archives and deployment.

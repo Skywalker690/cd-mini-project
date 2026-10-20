@@ -30,4 +30,4 @@ Can arbitrary JavaScript execute? Source is parsed as StringLang, never passed t
 
 Where is data stored? Source and results live in the current page's memory. Downloads save files chosen by the user. There is no remote storage or automatic persistence.
 
-How is it deployed? Open index.html directly, upload dist to a static host, or publish the root through GitHub Pages. No backend configuration is needed.
+How is it deployed? Open index.html directly, upload dist to a static host, or push to main so the GitHub Pages workflow tests, builds and publishes dist automatically. No backend configuration is needed.

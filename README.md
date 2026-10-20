@@ -4,7 +4,7 @@ A **fully static browser application** for the Compiler Design mini project. The
 
 Presentation and demonstration: **23 October 2026**.
 
-[Open the hosted private preview](https://stringlab-compiler-demo-sanjo.soundlamb258.chatgpt.site). Use the downloadable static folder for offline use or public hosting.
+[Open the live demo on GitHub Pages](https://Skywalker690.github.io/cd-mini-project/).
 
 ## Open the application
 
@@ -39,9 +39,9 @@ This uses Node.js only to copy static files into **`dist/`**. There is no compil
 
 **Netlify Drop:** upload the generated `dist` folder. Netlify's manual deployment accepts a folder containing HTML, CSS and JavaScript and does not run a build command. [Official manual deployment instructions](https://docs.netlify.com/deploy/create-deploys/).
 
-**GitHub Pages:** push this browser version, open the repository's Pages settings, select deployment from your source branch and choose `/ (root)`. The root contains `index.html` and `.nojekyll`, so no framework build is needed. Select the branch that contains this version, rather than the earlier C version. [Official GitHub Pages instructions](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
+**GitHub Pages:** the workflow in `.github/workflows/pages.yml` runs the compiler tests, prepares `dist/` and publishes it whenever `main` changes. Pull requests to `main` run tests and the build without publishing. In the repository's **Settings → Pages**, the source must be **GitHub Actions**. You can redeploy from **Actions → Test and deploy GitHub Pages → Run workflow**, choosing `main`. No dependencies, secrets or environment variables are required. [Official GitHub Pages workflow instructions](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
-The Sites preview and repository status are recorded in `docs/deployment.md` and `docs/repository.md`.
+Deployment details and repository workflow are recorded in `docs/deployment.md` and `docs/repository.md`.
 
 ## Source structure
 
@@ -53,6 +53,7 @@ The Sites preview and repository status are recorded in `docs/deployment.md` and
 | `examples.js` | Embedded offline demonstration programs |
 | `app.js` | UI, safe text rendering, file import and downloads |
 | `scripts/build.mjs` | Optional static deployment packaging |
+| `.github/workflows/pages.yml` | Test, build and deploy `main` to GitHub Pages |
 | `tests/compiler.test.cjs` | Core language and failure tests using Node's standard library |
 
 ## Example language
