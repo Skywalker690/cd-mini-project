@@ -3,7 +3,7 @@
 The application is ordinary HTML, CSS and JavaScript. Its compiler runs entirely in the browser. No backend, environment variables, database, secrets or application server are needed.
 
 ## Offline demonstration
-Keep index.html, styles.css, compiler.js, examples.js, ast-tree.js and app.js together, then open index.html. Keep docs/grammar.md and submission/ beside them for the Project dialog downloads.
+Keep index.html, styles.css, compiler.js, examples.js, ast-tree.js and app.js together with the complete compiler/ directory, then open index.html. Keep docs/grammar.md and submission/ beside them for the Project dialog downloads. The optional build copies all compiler stages into dist/compiler/ automatically.
 
 ## Upload folder
 Run npm run build if Node is available. Upload the contents of dist, including its index.html. This optional command only copies files. For connected static hosting use npm run build as the build command and dist as the publish directory.

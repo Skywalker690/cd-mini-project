@@ -11,6 +11,7 @@ await fs.mkdir(output, { recursive: true });
 for (const file of ['index.html', 'styles.css', 'compiler.js', 'examples.js', 'ast-tree.js', 'app.js', '.nojekyll']) {
   await fs.copyFile(path.join(root, file), path.join(output, file));
 }
+await fs.cp(path.join(root, 'compiler'), path.join(output, 'compiler'), { recursive: true });
 for (const folder of ['docs', 'submission']) {
   await fs.mkdir(path.join(output, folder), { recursive: true });
 }

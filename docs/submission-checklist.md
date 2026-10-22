@@ -5,7 +5,7 @@ Presentation and demonstration: 23 October 2026.
 | Requirement | Browser version evidence | Group action |
 | --- | --- | --- |
 | Project report | submission/Project_Report.docx and docs/report.md | Enter institutional and group details |
-| Complete source | index.html, styles.css, compiler.js, examples.js, ast-tree.js, app.js | Review and understand |
+| Complete source | Root HTML/CSS/JavaScript files and the compiler/ directory | Review and understand |
 | Git/GitHub repository | Local Git history and docs/repository.md | Share the completed browser branch when ready |
 | README | README.md | Follow the direct-open instructions |
 | CFG and transformations | docs/grammar.md and Language guide | Rehearse recursion removal and factoring |

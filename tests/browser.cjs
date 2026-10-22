@@ -11,6 +11,12 @@ const {pathToFileURL} = require('node:url');
   const errors=[]; page.on('pageerror',e=>errors.push(e.message));
   await page.goto(pathToFileURL(path.resolve('index.html')).href);
   await page.getByText('Compilation successful',{exact:true}).waitFor();
+  assert.deepEqual(await page.evaluate(()=>[
+    typeof window.StringLexer?.tokenize,
+    typeof window.StringParser?.parse,
+    typeof window.StringSemantic?.analyze,
+    typeof window.StringInterpreter?.execute
+  ]),['function','function','function','function'],'Compiler stages must load as separate browser scripts');
   await page.screenshot({path:'.build/qa-browser-desktop.png',fullPage:true});
   assert.match(await page.locator('#output-text').innerText(),/Hello, World!/);
   await page.getByRole('tab',{name:/Tokens/}).click();

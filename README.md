@@ -27,7 +27,7 @@ The application uses local scripts and system fonts, so the downloaded folder al
 
 ## Easy static deployment
 
-The root `index.html`, `styles.css`, `compiler.js`, `examples.js`, `ast-tree.js` and `app.js` are the application. Keep them together. The `docs/grammar.md` and `submission/` files support the Project dialog's downloads.
+Keep the root `index.html`, `styles.css`, `compiler.js`, `examples.js`, `ast-tree.js` and `app.js` together with the entire **`compiler/` directory**. The `docs/grammar.md` and `submission/` files support the Project dialog's downloads.
 
 For a clean upload folder, optionally run:
 
@@ -49,14 +49,22 @@ Deployment details and repository workflow are recorded in `docs/deployment.md` 
 | --- | --- |
 | `index.html` | Accessible page, result panels, language/project dialogs |
 | `styles.css` | Responsive editor and playground styles |
-| `compiler.js` | Independent lexer, parser, semantic analyzer and preview |
+| `compiler.js` | Small entry point: calls the stages and builds the compilation report |
+| `compiler/shared.js` | Shared limits, phase names and positioned errors |
+| `compiler/lexical-analysis.js` | Lexer: tokens, keywords, string literals and escapes |
+| `compiler/syntax-analysis.js` | Recursive-descent parser and AST construction |
+| `compiler/semantic-analysis.js` | Declarations, initialization, duplicates and value bounds |
+| `compiler/interpreter.js` | Preview execution of accepted programs |
 | `examples.js` | Embedded offline demonstration programs |
 | `ast-tree.js` | AST display projection, tree layout and interactive SVG diagram |
 | `app.js` | UI, safe text rendering, file import and downloads |
 | `scripts/build.mjs` | Optional static deployment packaging |
 | `.github/workflows/pages.yml` | Test, build and deploy `main` to GitHub Pages |
 | `tests/compiler.test.cjs` | Core language and failure tests using Node's standard library |
+| `tests/compiler-stages.test.cjs` | Direct checks of each independently accessible stage |
 | `tests/ast-tree.test.cjs` | Diagram structure, layout, folding and AST preservation checks |
+
+See **[compiler/README.md](compiler/README.md)** for the stage-by-stage walkthrough and a guide to which file to edit for a logical change.
 
 ## Example language
 
@@ -88,7 +96,7 @@ Node.js 20 or later is needed only for development checks:
 npm test
 ```
 
-The suite contains **38 tests**: 29 compiler tests and 9 AST diagram tests, several with multiple cases. Browser checks additionally verify examples, result tabs, diagram structure, branch folding, statement selection, zoom/fit, keyboard use, stale-state invalidation, file import, source/AST/report downloads, inert HTML strings, mobile layout and direct `file://` use.
+The suite contains **45 tests**: 29 compiler tests, 7 direct stage tests and 9 AST diagram tests, several with multiple cases. Browser checks additionally verify the separate compiler scripts, examples, result tabs, diagram structure, branch folding, statement selection, zoom/fit, keyboard use, stale-state invalidation, file import, source/AST/report downloads, inert HTML strings, mobile layout and direct `file://` use.
 
 The diagram opens on the first assignment, or the first statement when there is no assignment. Use **View → Entire program** to see all statements. Assignment targets appear as identifier leaves beneath `=`; initialized declarations also use `=`, with their declaration type in the tooltip. This is a view of the actual parsed AST; the downloaded JSON keeps the compiler's original structure. Long labels are shortened visually, with the full value available in the tooltip.
 
@@ -111,13 +119,13 @@ Locations use one-based lines and UTF-16 code-unit columns. CRLF counts as one l
 | Requirement | Evidence |
 | --- | --- |
 | Project report | `submission/Project_Report.docx`, editable content in `docs/report.md` |
-| Complete source | The six static application files above |
+| Complete source | The root application files and `compiler/` stages above |
 | Git/GitHub repository | Local Git history and `docs/repository.md` |
 | README | This file |
 | CFG and transformations | `docs/grammar.md`, in-app language guide |
-| Lexical analyzer | `tokenize()` in `compiler.js`, Tokens tab |
-| Parse tree or AST | `parse()` in `compiler.js`, interactive AST tab and JSON export |
-| Semantic checks | `analyze()` in `compiler.js`, diagnostics and Symbols tab |
+| Lexical analyzer | `tokenize()` in `compiler/lexical-analysis.js`, Tokens tab |
+| Parse tree or AST | `parse()` in `compiler/syntax-analysis.js`, interactive AST tab and JSON export |
+| Semantic checks | `analyze()` in `compiler/semantic-analysis.js`, diagnostics and Symbols tab |
 | Screenshots | `screenshots/`, actual engine results in `screenshots/results/` |
 | Presentation | `submission/Presentation.pptx` |
 | Individual contribution details | `docs/contributions.md` and the report sheet |
