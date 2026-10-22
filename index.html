@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="compiler.js" defer></script>
   <script src="examples.js" defer></script>
+  <script src="ast-tree.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -100,7 +101,7 @@
               <div id="tokens-container"></div>
             </section>
             <section id="panel-ast" class="result-view" role="tabpanel" aria-labelledby="tab-ast" tabindex="0" hidden>
-              <div class="view-intro ast-intro"><div><h3>Structure, made visible</h3><p>An abstract syntax tree without the punctuation.</p></div><div class="tree-actions"><button id="expand-tree" type="button">Expand</button><button id="collapse-tree" type="button">Collapse</button><button id="save-ast" class="icon-button" type="button" aria-label="Download AST JSON" title="Download AST JSON"><svg class="icon"><use href="#i-download"/></svg></button></div></div>
+              <div class="view-intro ast-intro"><div><h3>Structure, made visible</h3><p>Follow the branches from each statement to its values.</p></div><div class="tree-actions"><button id="expand-tree" type="button">Expand</button><button id="collapse-tree" type="button">Collapse</button><button id="save-ast" class="icon-button" type="button" aria-label="Download AST JSON" title="Download AST JSON"><svg class="icon"><use href="#i-download"/></svg></button></div></div>
               <div id="ast-container" class="ast-tree"></div>
             </section>
             <section id="panel-symbols" class="result-view table-view" role="tabpanel" aria-labelledby="tab-symbols" tabindex="0" hidden>

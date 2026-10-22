@@ -9,7 +9,7 @@ Open index.html directly, or open the deployed site. Download the complete folde
 1. Show the default program. Identify declaration, assignment, concatenation and print.
 2. Change World to your own name. Explain that old results become invalid until Compile and run is pressed. Use Ctrl/Cmd + Enter.
 3. Open Tokens. Explain raw lexemes, decoded values and source locations. Select a token location to highlight the source.
-4. Choose A tiny AST. Open AST, expand/collapse it, and explain why punctuation is omitted. Download AST JSON.
+4. Open AST. Show the = assignment node, its target-name child and the + concatenation branches. Use View to choose one statement or Entire program. Select a branch to fold it, use Expand/Collapse and zoom/Fit, and select a leaf to locate its source. Explain why punctuation is omitted. Download the original AST JSON.
 5. Open Symbols. Explain initialization and final preview values.
 6. Choose Escape sequences, then each of the three error examples. Explain the failed and skipped phases, locations and absence of output on error.
 7. Open Language guide and explain left recursion removal, factoring and the final LL(1) grammar.

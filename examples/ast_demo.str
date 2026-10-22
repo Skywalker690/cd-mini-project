@@ -1,2 +1,4 @@
-string a = "Hi";
-print(a + "!");
+string name = "World";
+string message;
+message = "Hello, " + name;
+print(message);

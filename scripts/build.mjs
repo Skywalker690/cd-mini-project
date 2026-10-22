@@ -8,7 +8,7 @@ if (path.dirname(output) !== root || path.basename(output) !== 'dist') throw new
 await fs.access(path.join(root, 'index.html'));
 await fs.rm(output, { recursive: true, force: true });
 await fs.mkdir(output, { recursive: true });
-for (const file of ['index.html', 'styles.css', 'compiler.js', 'examples.js', 'app.js', '.nojekyll']) {
+for (const file of ['index.html', 'styles.css', 'compiler.js', 'examples.js', 'ast-tree.js', 'app.js', '.nojekyll']) {
   await fs.copyFile(path.join(root, file), path.join(output, file));
 }
 for (const folder of ['docs', 'submission']) {

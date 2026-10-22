@@ -4,7 +4,7 @@
   const $ = id => document.getElementById(id);
   const source = $('source'), examples = window.StringExamples;
   let selected = examples[0], result = null, compiledSource = null, filename = 'hello.str';
-  let currentTab = 'output', elapsed = 0, dirty = false, toastTimer;
+  let currentTab = 'output', elapsed = 0, dirty = false, toastTimer, astDiagram = null;
   const icon = name => {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('class', 'icon'); svg.setAttribute('aria-hidden', 'true');
@@ -59,6 +59,7 @@
   }
   function setTab(name, focus = false) {
     currentTab = name;
+    $('panel-ast').parentElement.classList.toggle('ast-active', name === 'ast');
     for (const button of document.querySelectorAll('[data-tab]')) {
       const active = button.dataset.tab === name;
       button.classList.toggle('active', active); button.setAttribute('aria-selected', String(active));
@@ -66,6 +67,7 @@
       $('panel-' + button.dataset.tab).hidden = !active;
       if (active && focus) button.focus();
     }
+    if (name === 'ast' && astDiagram) astDiagram.resize();
   }
   function statusView(title, message, state) {
     const container = $('compile-status'); container.className = 'compile-status ' + state;
@@ -123,21 +125,10 @@
   }
   function renderAst() {
     const box = $('ast-container'), available = !dirty && !!(result && result.ast);
+    if (astDiagram) { astDiagram.destroy(); astDiagram = null; }
     for (const id of ['expand-tree', 'collapse-tree', 'save-ast']) $(id).disabled = !available;
     if (!available) return empty(box, 'Every program has a shape.', 'A successful parse will reveal the abstract syntax tree.');
-    function tree(n, depth = 0) {
-      const children = n.type === 'Program' ? n.body : n.type === 'Concat' ? [n.left, n.right] : n.expression ? [n.expression] : [];
-      const label = element('span', 'node-kind', n.type); label.dataset.kind = n.type;
-      const full = n.name || (n.type === 'Literal' ? JSON.stringify(n.value) : '');
-      const value = element('span', 'node-value', full.length > 90 ? full.slice(0, 90) + '…' : full); value.title = full;
-      if (!children.length) { const leaf = element('div', 'tree-leaf'); leaf.append(label, value); return leaf; }
-      const branch = element('details', 'tree-node'); branch.open = depth < 5;
-      const summary = element('summary'); summary.append(label, value);
-      if (n.type === 'Program') summary.append(element('span', 'node-meta', n.body.length + ' statements'));
-      const list = element('div', 'tree-children'); children.forEach(child => list.append(tree(child, depth + 1)));
-      branch.append(summary, list); return branch;
-    }
-    box.replaceChildren(tree(result.ast));
+    astDiagram = window.StringAstTree.mount(box, result.ast, compiledSource, selectLocation);
   }
   function renderSymbols() {
     const box = $('symbols-container');
@@ -240,8 +231,8 @@
     toast('Compilation report downloaded.');
   });
   $('save-ast').addEventListener('click', () => { if (!dirty && result && result.ast) { download('stringlab-ast.json', JSON.stringify(result.ast, null, 2), 'application/json'); toast('AST downloaded.'); } });
-  $('expand-tree').addEventListener('click', () => $('ast-container').querySelectorAll('details').forEach(n => { n.open = true; }));
-  $('collapse-tree').addEventListener('click', () => $('ast-container').querySelectorAll('details').forEach(n => { n.open = false; }));
+  $('expand-tree').addEventListener('click', () => astDiagram?.expand());
+  $('collapse-tree').addEventListener('click', () => astDiagram?.collapse());
   document.querySelectorAll('[data-dialog]').forEach(button => button.addEventListener('click', () => $(button.dataset.dialog).showModal()));
   document.querySelectorAll('dialog').forEach(dialog => {
     dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());

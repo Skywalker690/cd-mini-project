@@ -1,0 +1,298 @@
+{
+  "source": "string name = \"World\";\nstring message;\nmessage = \"Hello, \" + name;\nprint(message);",
+  "success": true,
+  "tokens": [
+    {
+      "start": 0,
+      "line": 1,
+      "column": 1,
+      "length": 6,
+      "kind": "STRING",
+      "value": "string",
+      "lexeme": "string"
+    },
+    {
+      "start": 7,
+      "line": 1,
+      "column": 8,
+      "length": 4,
+      "kind": "IDENTIFIER",
+      "value": "name",
+      "lexeme": "name"
+    },
+    {
+      "start": 12,
+      "line": 1,
+      "column": 13,
+      "length": 1,
+      "kind": "EQUAL",
+      "value": "=",
+      "lexeme": "="
+    },
+    {
+      "start": 14,
+      "line": 1,
+      "column": 15,
+      "length": 7,
+      "kind": "STRING_LITERAL",
+      "value": "World",
+      "lexeme": "\"World\""
+    },
+    {
+      "start": 21,
+      "line": 1,
+      "column": 22,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 23,
+      "line": 2,
+      "column": 1,
+      "length": 6,
+      "kind": "STRING",
+      "value": "string",
+      "lexeme": "string"
+    },
+    {
+      "start": 30,
+      "line": 2,
+      "column": 8,
+      "length": 7,
+      "kind": "IDENTIFIER",
+      "value": "message",
+      "lexeme": "message"
+    },
+    {
+      "start": 37,
+      "line": 2,
+      "column": 15,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 39,
+      "line": 3,
+      "column": 1,
+      "length": 7,
+      "kind": "IDENTIFIER",
+      "value": "message",
+      "lexeme": "message"
+    },
+    {
+      "start": 47,
+      "line": 3,
+      "column": 9,
+      "length": 1,
+      "kind": "EQUAL",
+      "value": "=",
+      "lexeme": "="
+    },
+    {
+      "start": 49,
+      "line": 3,
+      "column": 11,
+      "length": 9,
+      "kind": "STRING_LITERAL",
+      "value": "Hello, ",
+      "lexeme": "\"Hello, \""
+    },
+    {
+      "start": 59,
+      "line": 3,
+      "column": 21,
+      "length": 1,
+      "kind": "PLUS",
+      "value": "+",
+      "lexeme": "+"
+    },
+    {
+      "start": 61,
+      "line": 3,
+      "column": 23,
+      "length": 4,
+      "kind": "IDENTIFIER",
+      "value": "name",
+      "lexeme": "name"
+    },
+    {
+      "start": 65,
+      "line": 3,
+      "column": 27,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 67,
+      "line": 4,
+      "column": 1,
+      "length": 5,
+      "kind": "PRINT",
+      "value": "print",
+      "lexeme": "print"
+    },
+    {
+      "start": 72,
+      "line": 4,
+      "column": 6,
+      "length": 1,
+      "kind": "LPAREN",
+      "value": "(",
+      "lexeme": "("
+    },
+    {
+      "start": 73,
+      "line": 4,
+      "column": 7,
+      "length": 7,
+      "kind": "IDENTIFIER",
+      "value": "message",
+      "lexeme": "message"
+    },
+    {
+      "start": 80,
+      "line": 4,
+      "column": 14,
+      "length": 1,
+      "kind": "RPAREN",
+      "value": ")",
+      "lexeme": ")"
+    },
+    {
+      "start": 81,
+      "line": 4,
+      "column": 15,
+      "length": 1,
+      "kind": "SEMICOLON",
+      "value": ";",
+      "lexeme": ";"
+    },
+    {
+      "start": 82,
+      "line": 4,
+      "column": 16,
+      "length": 0,
+      "kind": "EOF",
+      "lexeme": "",
+      "value": ""
+    }
+  ],
+  "ast": {
+    "type": "Program",
+    "line": 1,
+    "column": 1,
+    "start": 0,
+    "body": [
+      {
+        "type": "Declaration",
+        "line": 1,
+        "column": 8,
+        "start": 7,
+        "name": "name",
+        "expression": {
+          "type": "Literal",
+          "line": 1,
+          "column": 15,
+          "start": 14,
+          "value": "World"
+        }
+      },
+      {
+        "type": "Declaration",
+        "line": 2,
+        "column": 8,
+        "start": 30,
+        "name": "message",
+        "expression": null
+      },
+      {
+        "type": "Assignment",
+        "line": 3,
+        "column": 1,
+        "start": 39,
+        "name": "message",
+        "expression": {
+          "type": "Concat",
+          "line": 3,
+          "column": 21,
+          "start": 59,
+          "left": {
+            "type": "Literal",
+            "line": 3,
+            "column": 11,
+            "start": 49,
+            "value": "Hello, "
+          },
+          "right": {
+            "type": "Identifier",
+            "line": 3,
+            "column": 23,
+            "start": 61,
+            "name": "name"
+          }
+        }
+      },
+      {
+        "type": "Print",
+        "line": 4,
+        "column": 1,
+        "start": 67,
+        "expression": {
+          "type": "Identifier",
+          "line": 4,
+          "column": 7,
+          "start": 73,
+          "name": "message"
+        }
+      }
+    ]
+  },
+  "symbols": [
+    {
+      "name": "name",
+      "type": "string",
+      "line": 1,
+      "initialized": true,
+      "length": 5,
+      "value": "World"
+    },
+    {
+      "name": "message",
+      "type": "string",
+      "line": 2,
+      "initialized": true,
+      "length": 12,
+      "value": "Hello, World"
+    }
+  ],
+  "diagnostics": [],
+  "output": [
+    "Hello, World"
+  ],
+  "phases": [
+    {
+      "id": "lexical",
+      "label": "Lexical analysis",
+      "status": "success",
+      "count": 20
+    },
+    {
+      "id": "syntax",
+      "label": "Syntax analysis",
+      "status": "success",
+      "count": 10
+    },
+    {
+      "id": "semantic",
+      "label": "Semantic analysis",
+      "status": "success",
+      "count": 2
+    }
+  ]
+}

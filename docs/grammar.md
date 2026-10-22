@@ -110,4 +110,4 @@ Program
       Literal "!"
 ```
 
-The AST keeps semantic structure and omits punctuation and helper nonterminals. A Program node contains an ordered body array. Declaration, Assignment and Print nodes contain expression children. Concat has left and right children. The browser displays an expandable tree and exports it as JSON.
+The AST keeps semantic structure and omits punctuation and helper nonterminals. A Program node contains an ordered body array. Declaration, Assignment and Print nodes contain expression children. Concat has left and right children. The browser displays connected oval nodes for individual statements or the whole program. Assignment and initialized-declaration diagrams use an = root, with a target-name leaf and an expression child; concatenation uses + with left and right children. Target names are stored as properties in the compiler AST and projected as leaves for display. The original AST can be exported as JSON.

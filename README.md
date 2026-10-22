@@ -19,7 +19,7 @@ The application uses local scripts and system fonts, so the downloaded folder al
 - A phase strip showing which checks passed, failed or were not reached.
 - **Output:** accepted program output or positioned, clickable diagnostics.
 - **Tokens:** raw lexemes, decoded string values and source locations.
-- **AST:** expandable syntax tree with expand/collapse controls and JSON download.
+- **AST:** connected diagram with pastel oval nodes, statement/whole-program selection, zoom, fit, branch folding and JSON download.
 - **Symbols:** declaration lines, string type, initialization state and final preview values.
 - A complete downloadable JSON compilation report.
 - A language guide with escapes, CFG, grammar transformations and phase explanations.
@@ -27,7 +27,7 @@ The application uses local scripts and system fonts, so the downloaded folder al
 
 ## Easy static deployment
 
-The root `index.html`, `styles.css`, `compiler.js`, `examples.js` and `app.js` are the application. Keep them together. The `docs/grammar.md` and `submission/` files support the Project dialog's downloads.
+The root `index.html`, `styles.css`, `compiler.js`, `examples.js`, `ast-tree.js` and `app.js` are the application. Keep them together. The `docs/grammar.md` and `submission/` files support the Project dialog's downloads.
 
 For a clean upload folder, optionally run:
 
@@ -51,10 +51,12 @@ Deployment details and repository workflow are recorded in `docs/deployment.md` 
 | `styles.css` | Responsive editor and playground styles |
 | `compiler.js` | Independent lexer, parser, semantic analyzer and preview |
 | `examples.js` | Embedded offline demonstration programs |
+| `ast-tree.js` | AST display projection, tree layout and interactive SVG diagram |
 | `app.js` | UI, safe text rendering, file import and downloads |
 | `scripts/build.mjs` | Optional static deployment packaging |
 | `.github/workflows/pages.yml` | Test, build and deploy `main` to GitHub Pages |
 | `tests/compiler.test.cjs` | Core language and failure tests using Node's standard library |
+| `tests/ast-tree.test.cjs` | Diagram structure, layout, folding and AST preservation checks |
 
 ## Example language
 
@@ -86,7 +88,11 @@ Node.js 20 or later is needed only for development checks:
 npm test
 ```
 
-The core suite contains **29 tests**, several with multiple cases. Browser checks additionally verify examples, result tabs, AST controls, keyboard use, stale-state invalidation, file import, source/AST/report downloads, inert HTML strings, mobile layout and direct `file://` use.
+The suite contains **38 tests**: 29 compiler tests and 9 AST diagram tests, several with multiple cases. Browser checks additionally verify examples, result tabs, diagram structure, branch folding, statement selection, zoom/fit, keyboard use, stale-state invalidation, file import, source/AST/report downloads, inert HTML strings, mobile layout and direct `file://` use.
+
+The diagram opens on the first assignment, or the first statement when there is no assignment. Use **View → Entire program** to see all statements. Assignment targets appear as identifier leaves beneath `=`; initialized declarations also use `=`, with their declaration type in the tooltip. This is a view of the actual parsed AST; the downloaded JSON keeps the compiler's original structure. Long labels are shortened visually, with the full value available in the tooltip.
+
+Choose **A tiny AST → AST** to see `message = "Hello, " + name;` as a connected tree. [View the diagram screenshot](screenshots/09_ast_diagram.png).
 
 `tests/browser.cjs` preserves the optional browser regression suite, including oversized-file import handling. It opens the local HTML file and needs Playwright and a local Chrome installation for development only. Run it with `npm run test:browser` when those tools are available. Neither is part of the application's runtime or deployment.
 
@@ -105,7 +111,7 @@ Locations use one-based lines and UTF-16 code-unit columns. CRLF counts as one l
 | Requirement | Evidence |
 | --- | --- |
 | Project report | `submission/Project_Report.docx`, editable content in `docs/report.md` |
-| Complete source | The five static application files above |
+| Complete source | The six static application files above |
 | Git/GitHub repository | Local Git history and `docs/repository.md` |
 | README | This file |
 | CFG and transformations | `docs/grammar.md`, in-app language guide |

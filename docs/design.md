@@ -4,7 +4,7 @@ The current user request supersedes the earlier C console implementation. String
 
 compiler.js exposes compileSource in the browser and through CommonJS for development tests. Each invocation owns its token, AST and symbol state. The lexer validates double-quoted literals and escapes. Recursive descent implements the transformed LL(1) grammar. Semantic analysis checks declaration order, initialization, duplicate names and string lengths. A separate interpreter previews only accepted programs.
 
-app.js manages the editor, examples, phase strip, result tabs, AST expansion, local file import and Blob downloads. It uses text nodes rather than injecting user source as HTML. Source changes invalidate old results and disable result exports until recompilation. Programs remain in memory unless downloaded.
+app.js manages the editor, examples, phase strip, result tabs, local file import and Blob downloads. ast-tree.js projects the compiler AST into a connected SVG diagram, allocates separate spans to subtrees, and connects the boundaries of pastel ellipse nodes. It supports statement or whole-program views, folding, zoom/fit and keyboard activation. Assignment names stored as AST properties appear as target leaves; the original AST and JSON export are unchanged. Both interface modules use text nodes rather than injecting user source as HTML. Source changes invalidate old results and disable result exports until recompilation. Programs remain in memory unless downloaded.
 
 The interface supports desktop/mobile layouts, keyboard tabs, native dialogs and direct file:// opening. The optional build script copies the static application and project downloads into dist. The same files can be hosted by Sites, GitHub Pages or another static host.
 
